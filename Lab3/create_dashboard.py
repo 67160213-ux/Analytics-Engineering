@@ -83,7 +83,7 @@ draw_kpi_card(fig.add_axes([0.672, 0.83, 0.14, 0.075]), "TOTAL DISCOUNT", f"฿{
 draw_kpi_card(fig.add_axes([0.83, 0.83, 0.13, 0.075]), "GROSS SALES", f"฿{total_gross_sales:,.0f}", '#475569')
 
 # --- Chart 1: Daily Trend - Sales vs Rain (Combo Chart) ---
-ax1 = fig.add_axes([0.04, 0.46, 0.58, 0.30])
+ax1 = fig.add_axes([0.04, 0.46, 0.51, 0.30])
 date_labels = [d[5:] for d in date_summary['Date']]
 x = np.arange(len(date_labels))
 
@@ -93,11 +93,13 @@ ax1.tick_params(axis='y', labelcolor='#1e3a8a')
 ax1.set_xticks(x)
 ax1.set_xticklabels(date_labels, rotation=45, ha='right')
 ax1.set_title('Daily Sales Trend & Mean Precipitation (Sep 2026)', fontsize=12, fontweight='bold', loc='left', pad=10)
+ax1.set_ylim(0, max(date_summary['Net_Sales']) * 1.15)
 
 ax1_twin = ax1.twinx()
 line = ax1_twin.plot(x + 0.15, date_summary['Precipitation'], color='#ef4444', marker='o', linewidth=2.5, label='Precipitation (mm)')
 ax1_twin.set_ylabel('Precipitation (mm)', color='#991b1b', fontweight='bold')
 ax1_twin.tick_params(axis='y', labelcolor='#991b1b')
+ax1_twin.set_ylim(0, max(date_summary['Precipitation']) * 1.15)
 ax1_twin.grid(False)
 
 for bar in bars:
@@ -110,7 +112,7 @@ for bar in bars:
 
 
 # --- Chart 2: Net Sales by Branch (Bar Chart) ---
-ax2 = fig.add_axes([0.68, 0.46, 0.28, 0.30])
+ax2 = fig.add_axes([0.67, 0.46, 0.29, 0.30])
 colors_branch = ['#0284c7', '#0d9488', '#6366f1']
 bars_b = ax2.bar(branch_summary['Branch_Name'], branch_summary['Net_Sales'], color=colors_branch, width=0.55)
 ax2.set_title('Net Sales by Branch', fontsize=12, fontweight='bold', loc='left', pad=10)
