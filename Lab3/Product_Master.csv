@@ -1,0 +1,9 @@
+﻿Product_ID,Product_Name,Category,Unit_Price
+P001,Coffee,Drink,60
+P002,Tea,Drink,45
+P003,Cocoa,Drink,55
+P004,Croissant,Bakery,50
+P005,Cake,Bakery,80
+P006,Sandwich,Snack,70
+P007,Salad,Snack,65
+P008,Water,Drink,25
